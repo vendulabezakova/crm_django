@@ -13,6 +13,6 @@ class CompanyCreateView(CreateView):
 
     from django.views.generic import ListView
 
-class CourseListView(ListView):
-        model = models.Company
-        template_name = "company_list.html"
+class CompanyListView(ListView):
+    model = models.Company
+    template_name = "company/company_list.html"
