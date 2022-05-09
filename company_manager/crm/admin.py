@@ -8,5 +8,11 @@ class CompanyAdmin(admin.ModelAdmin):
     list_filter = ["status"]
     search_fields = ["name", "email", "identification_number", "opportunity__description"]
 
+class OpportunityAdmin(admin.ModelAdmin):
+    list_display = ["status", "value"]
+    list_filter = ["status"]
+    search_fields = ["description"]
+admin.site.register(models.Opportunity, OpportunityAdmin)
+
 admin.site.register(models.Company, CompanyAdmin)
-admin.site.register(models.Opportunity)
+admin.site.register(models.Employee)
