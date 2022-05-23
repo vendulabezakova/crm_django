@@ -3,17 +3,20 @@ import crm.models as models
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
+from django.utils.translation import gettext as _
+from crm.forms import CompanyForm
 
 class IndexView(TemplateView):
     template_name = "index.html"
 
-class CompanyCreateView(LoginRequiredMixin, CreateView):
-    model = models.Company
+class CompanyCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     template_name = "company/create_company.html"
-    fields = ["name", "status", "phone_number", "email", "identification_number"]
     success_url = reverse_lazy("index")
+    # Translators: This message is shown after successful creation of a company
+    success_message = _("Company created!")
+    form_class = CompanyForm
 
-class OpportunityCreateView(PermissionRequiredMixin, CreateView):
+class OpportunityCreateView(PermissionRequiredMixin, SuccessMessageMixin, CreateView):
     permission_required = "crm.add_opportunity"
     model = models.Opportunity
     template_name = "opportunity/create_opportunity.html"

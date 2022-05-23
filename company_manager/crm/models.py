@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils.translation import gettext_lazy as _
 
 # def get_name(self):
 #     return f"{self.first_name} {self.last_name}"
@@ -11,6 +12,10 @@ class Address(models.Model):
     zip_code = models.CharField(max_length=10, blank=True, null=True)
     city = models.CharField(max_length=100, blank=True, null=True)
 
+    class Meta:
+        verbose_name = _("Address")
+        verbose_name_plural = _("Addresses")
+
 class Company(models.Model):
     status_choices = (
         ("N", "New"),
@@ -21,9 +26,9 @@ class Company(models.Model):
         ("I", "Inactive")
     )
 
-    name = models.CharField(max_length=50)
-    status = models.CharField(max_length=2, default="N", choices=status_choices)
-    phone_number = models.CharField(max_length=20, null=True, blank=True)
+    name = models.CharField(_("Name"), max_length=50)
+    status = models.CharField(_("Status"), max_length=2, default="N", choices=status_choices)
+    phone_number = models.CharField(_("Phone number"), max_length=20, null=True, blank=True)
     email = models.CharField(max_length=50, null=True, blank=True)
     identification_number = models.CharField(max_length=100)
     address = models.ForeignKey("Address", on_delete=models.SET_NULL, null=True)

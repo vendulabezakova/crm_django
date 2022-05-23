@@ -1,3 +1,4 @@
+{% load i18n %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,7 +21,7 @@
   <ul class="navbar-nav">
       <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              For companies
+             {% trans "For companies" %}
           </a>
           <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="/company/create">Create new company</a></li>
@@ -28,7 +29,7 @@
       </li>
             <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Sales opportunities
+              {% trans "Sales opportunities" %}
           </a>
           <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="/company/list">Company list</a></li>
